@@ -1,0 +1,63 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import PageHeader from "@/components/PageHeader.astro";
+import { breadcrumbList, type Crumb } from "@/lib/schema";
+import { BUSINESS, MAILTO_HREF } from "@/consts";
+
+const trail: Crumb[] = [
+  { name: "Home", href: "/" },
+  { name: "Privacy", href: "/privacy/" },
+];
+---
+
+<BaseLayout
+  title="Privacy"
+  description="How Caledonia Containers handles your information, including the analytics used on this website."
+  schema={[breadcrumbList(trail)]}
+>
+  <PageHeader trail={trail} eyebrow="Legal" title="Privacy" />
+
+  <section class="py-16 sm:py-20">
+    <div class="wrap prose max-w-3xl">
+      <p>This website is run by {BUSINESS.legalName}, {BUSINESS.addressLines.join(", ")}.</p>
+
+      <h2>What we collect</h2>
+      <p>
+        The website has no forms or accounts and doesn't ask for any personal information. Our web
+        host, GitHub, may keep standard server logs (such as IP addresses) for security.
+      </p>
+      <p>
+        If you phone or email us, we'll use the details you give us — your name, contact details and
+        what you're enquiring about — to answer your enquiry and, if you go ahead, to carry out and
+        invoice the work. We keep these records for as long as we need them for that and for our
+        accounts.
+      </p>
+
+      <h2>Website analytics</h2>
+      <p>
+        We use two analytics services to see how the site is used and where it can be improved.
+        <strong>Google Analytics</strong> records which pages are visited, how visitors arrived and
+        roughly where they are, and sets first-party cookies (<code>_ga</code> and
+        <code>_ga_*</code>) to tell repeat visits apart. <strong>Microsoft Clarity</strong> records
+        how pages are used — clicks, scrolling and mouse movement — and can replay a page visit as an
+        anonymous recording. Clarity runs without cookies for visitors in the UK and Europe, and
+        anything typed into fields is masked before it leaves your browser.
+      </p>
+      <p>
+        Neither service is used for advertising, and we don't try to identify individual visitors.
+        We rely on our legitimate interest in improving the website. Google Analytics keeps visit data
+        for no more than 14 months. Clarity keeps recordings for 30 days and aggregated reports for up
+        to 13 months. You can block or delete cookies in your browser settings, or opt out of Google
+        Analytics with Google's
+        <a href="https://tools.google.com/dlpage/gaoptout">browser add-on</a>.
+      </p>
+
+      <h2>Your rights</h2>
+      <p>
+        You can ask to see, correct or delete the information we hold about you by emailing
+        <a href={MAILTO_HREF}>{BUSINESS.email}</a>. If you're unhappy with how we've handled your
+        information, you can complain to the Information Commissioner's Office (ico.org.uk).
+      </p>
+    </div>
+  </section>
+</BaseLayout>
