@@ -83,6 +83,15 @@ const jsonLd = {
   function gtag() {
     dataLayer.push(arguments);
   }
+  // Consent mode: no analytics cookies until the visitor accepts in CookieBanner.astro.
+  var cookieConsent = null;
+  try { cookieConsent = localStorage.getItem("cookie-consent"); } catch (e) {}
+  gtag("consent", "default", {
+    analytics_storage: cookieConsent === "granted" ? "granted" : "denied",
+    ad_storage: "denied",
+    ad_user_data: "denied",
+    ad_personalization: "denied",
+  });
   gtag("js", new Date());
 
   gtag("config", "G-BGF2REMFCJ");
