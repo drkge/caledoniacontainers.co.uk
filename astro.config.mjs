@@ -45,6 +45,8 @@ export default defineConfig({
   site: SITE_URL,
   trailingSlash: "always",
   build: { format: "directory" },
+  // Astro 7 defaults to "jsx", which can drop spaces between inline elements.
+  compressHTML: true,
   // Old .html pages from the previous site, still known to search engines. GitHub
   // Pages can't send real redirects, so these become small forwarding pages.
   // Temporary: review in November 2026 and remove once search engines have moved on.
@@ -74,5 +76,8 @@ export default defineConfig({
   ],
   vite: {
     plugins: [tailwindcss()],
+    // Vite 8 targets newer browsers and drops -webkit-backdrop-filter, which Safari
+    // before 18 needs for the header blur. Keep the CSS targets Vite 7 used.
+    build: { cssTarget: ["chrome111", "edge111", "firefox114", "safari16.4"] },
   },
 });
